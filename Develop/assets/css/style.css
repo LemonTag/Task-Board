@@ -4,14 +4,23 @@ body {
 }
 
 .swim-lanes {
-  display: flex;
   min-height: 60vh;
 }
 
 .task-card {
+  display: wrap;
   margin: 0 auto;
 }
 
 .task-card:hover {
   cursor: grab;
+}
+
+.modal-body{
+  display: wrap;
+}
+
+.btn-btn-success {
+  display: wrap;
+  align-items: center;
 }
