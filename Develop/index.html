@@ -27,7 +27,8 @@
     <!-- Todo: Created a modal that opens shows the menu-->
     <div class="container">
       <!-- Trigger to open the button -->
-      <div class="modal fade" id="formModal" role="dialog">
+
+      <div class="modal fade" id="formModal" role="dialog" aria-hidden = true>
         <div class="modal-dialog modal-sm">
           <div class="modal-content">
             <div class="modal-header">
@@ -37,12 +38,12 @@
             <div class="modal-body">
               <form action="/blog.html">
                 </action>
-                <label for="Task Title">Task Title:</label>
-                <input type="text" id="Task Title" />
+                <label for="Task-Title">Task Title:</label>
+                <input type="text" id="Task-Title" />
                 <label for="Task Due Date">Task Due Date</label>
-                <input type="text" id="Task Due Date" />
+                <input type="date" id="Task-Due-Date" />
                 <label for="Task Description">Task Description</label>
-                <textarea type="text" id="Task Description" row="3"></textarea>
+                <textarea type="text" id="Task-Description" row="3"></textarea>
               </form>
               <p></p>
             </div>
