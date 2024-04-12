@@ -10,6 +10,9 @@ body {
 .task-card {
   display: wrap;
   margin: 0 auto;
+  z-index: 10000000000000000000000000;
+  border: 5px solid purple;
+  border-radius: 20px;
 }
 
 .task-card:hover {

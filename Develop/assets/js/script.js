@@ -2,7 +2,6 @@
 let taskList = JSON.parse(localStorage.getItem("tasks")) || [];
 let nextId = JSON.parse(localStorage.getItem("nextId"));
 submitPress = document.getElementById("submit");
-// submitPress.addEventListener("click", showAlert);
 taskTitleInput = document.getElementById('taskTitle');
 taskDueInput = document.getElementById('taskDueDate');
 taskDescriptionInput = document.getElementById('taskDescription')
@@ -10,10 +9,12 @@ taskDescriptionInput = document.getElementById('taskDescription')
 function generateTaskId() {
     return `task-${Date.now()}`
 }
-// render task list
+
+
 
 // Todo: create a function to create a task card
 // make a fake card to put up
+// it saved the all current tasks
 function createTaskCard(task) {
     console.log(task);
     const taskArray = []
@@ -40,30 +41,39 @@ function createTaskCard(task) {
 
     return taskArray
 }
-
+//it render the task list
 function renderTaskList() {
-$("#todo-cards").empty()
-$("#in-progress-cards").empty()
-$("#done-cards").empty()
+    $("#todo-cards").empty()
+    $("#in-progress-cards").empty()
+    $("#done-cards").empty()
 
-const taskdata = JSON.parse(localStorage.getItem("tasks")) || [];
+    const taskdata = JSON.parse(localStorage.getItem("tasks")) || [];
 
-taskdata.forEach(task => {
-    const taskCard = createTaskCard([task])[0]
-    switch(task.lane){
-        case "to-do":
-            $("#to-do-cards").append(taskCard)
-            break;
-        case "in-progress":
-            $("#in-progress-cards").append(taskCard)
-            break;
-        case"done":
-            $("#done-cards").append(taskCard)
-            break;
+    //grabbing each card and saving them
+    taskdata.forEach(task => {
+        const taskCard = createTaskCard([task])[0]
+        switch (task.lane) {
+            case "to-do":
+                $("#todo-cards").append(taskCard)
+                break;
+            case "in-progress":
+                $("#in-progress-cards").append(taskCard)
+                break;
+            case "done":
+                $("#done-cards").append(taskCard)
+                break;
+        }
+    })
 
-    }
-}) 
+     //drags the card
+     $('.task-card').draggable({
+        revert: 'invalid',
+        containment: 'document',
+        // Clone the element being dragged
+    });
+    console.log("drag")
 }
+
 
 // Todo: create a function to render the task list and make cards draggable
 $(function draggable() {
@@ -71,7 +81,6 @@ $(function draggable() {
 });
 // Todo: create a function to handle adding a new task
 function handleAddTask(event) {
-
     const taskTitle = $("#Task-Title").val()
     const taskDueDate = $("#Task-Due-Date").val()
     const taskDescription = $("#Task-Description").val()
@@ -91,13 +100,13 @@ function handleAddTask(event) {
 
 // Todo: create a function to handle deleting a task
 function handleDeleteTask(event) {
-
+    //when I click the button it removes the card
+    function remove(button) {
+        button.remove();
+    }
 }
 
-// Todo: create a function to handle dropping a task into a new status lane
-function handleDrop(event, ui) {
 
-}
 
 // Todo: when the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
 //This is where we press the task buttin
@@ -111,24 +120,28 @@ $(document).ready(function () {
         handleAddTask()
     })
 
+    // Todo: create a function to handle dropping a task into a new status lane
+function handleDrop(event, ui) {
+
+    //drags the card
     $('.task-card').draggable({
         revert: 'invalid',
         containment: 'document',
-      // Clone the element being dragged
+        // Clone the element being dragged
     });
+    console.log("drag")
 
-      // Droppable configuration
-      $('.lane').droppable({
-        accept: '.task-card',
-        drop: handleDrop
-        
-    });
+   
+
+};
+
+ // Droppable configuration
+ $('.lane').droppable({
+    accept: '.task-card',
+    drop: handleDrop
+});
+console.log("drop")
 
 });
-
-function remove(button) {
-    button.remove();
-}
-
 
 
